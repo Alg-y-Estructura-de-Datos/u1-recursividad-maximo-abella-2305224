@@ -3,37 +3,35 @@
 // EJERCICIO A TERMINAR
 
 
-bool contarpares(int numero,int pos) {
-    if (numero == 0) {
-        return;
+int contarPar(int n,int tam,int &pares) {
+    if (n == 0) {
+        return pares;
     }
-    int x,x1,x2;
-    x = numero;
-    while (x >= 10){x = x/10;} //  x1 = 1,234
-    
-
-
-}
-
-void inttovect(int numero,int vector[]) {
-    int i = 0,x;
-    while (numero > 0)
+    int x = n%10;
+    if (x%2 == 0 && tam%2 != 0)
     {
-        x = 
-        vector[i] = x;
+        pares++;
     }
-    
+    contarPar(n/10,tam-1,pares);
 }
 
-
+int contardigitos(int numero) {
+    int c=0;
+    while (numero>0)
+    {
+        c++;
+        numero = numero/10;
+    }
+    return c;
+}
 
 int main() {
     std::cout<<"Programacion 3 recursividad ejercicio 6: "<<std::endl;
-    int numero;
-    std::cout<<"Ingrese un numero"<<std::endl;
+    int numero,tam,pares=0;
+    std::cout<<"Ingrese el numero a verificar"<<std::endl;
     std::cin>>numero;
-
-
-
+    tam = contardigitos(numero);
+    contarPar(numero,tam,pares);
+    std::cout<<"La cantidad de numeros pares en posiciones impares es de "<<pares<<std::endl;
     return 0;
 }
